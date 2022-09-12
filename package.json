@@ -1,0 +1,22 @@
+{
+  "name": "uucloud-db-translator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cli.js",
+  "bin": {
+    "uucloud-db-translator": "cli.js"
+  },
+  "scripts": {},
+  "author": "Daniel Jilek",
+  "license": "MIT",
+  "dependencies": {
+    "bson": "^4.7.0",
+    "event-stream": "^4.0.1",
+    "mongodb": "^4.9.1",
+    "winston": "^3.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xaverric/uucloud-db-translator.git"
+  }
+}
