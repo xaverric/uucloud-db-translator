@@ -7,13 +7,13 @@ const CHUNK_SIZE = 5000;
 
 const getFilteredDbNames = (dbNames, cmdArgs) => {
     let includedDbs = cmdArgs.databases ? dbNames.filter(name => cmdArgs.databases.includes(name)) : dbNames;
-    let filteredDbs = cmdArgs.skipDatabases ? includedDbs.filter(name => !cmdArgs.skipDatabases.includes(name)) : includedDbs;
+    let filteredDbs = cmdArgs.excludeDatabase ? includedDbs.filter(name => !cmdArgs.excludeDatabase.includes(name)) : includedDbs;
     return filteredDbs;
 }
 
 const getFilteredCollectionNames = (collectionNames, cmdArgs) => {
     let includedCollections = cmdArgs.collections ? collectionNames.filter(name => cmdArgs.collections.includes(name)) : collectionNames;
-    let filteredCollections = cmdArgs.skipCollections ? includedCollections.filter(name => !cmdArgs.skipCollections.includes(name)) : includedCollections;
+    let filteredCollections = cmdArgs.excludeCollection ? includedCollections.filter(name => !cmdArgs.excludeCollection.includes(name)) : includedCollections;
     return filteredCollections;
 }
 
