@@ -7,7 +7,7 @@ const replaceValue = (document, oldValue, newValue) => {
 };
 
 const performReplacements = (document, translationConfiguration) => {
-    let modifiedDocument = document;
+    let modifiedDocument = document.slice();
     for (let translation of translationConfiguration) {
         modifiedDocument = replaceValue(modifiedDocument, translation[TRANSLATION_OLD_VALUE_POSITION], translation[TRANSLATION_NEW_VALUE_POSITION]);
     }

@@ -30,7 +30,7 @@ const getDocumentsCount = async (dbName, collectionName, client) => {
 }
 
 const replaceDocument = async (dbName, collectionName, id, document, client) => {
-    return await client.db(dbName).collection(collectionName).replaceOne({ "_id": ObjectId(id)}, document);
+    return await client.db(dbName).collection(collectionName).replaceOne({ "_id": new ObjectId(id)}, document);
 }
 
 module.exports = {

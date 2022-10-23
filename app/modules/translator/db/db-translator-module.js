@@ -6,13 +6,13 @@ const { CONSOLE_LOG } = require('../../logger/logger');
 const CHUNK_SIZE = 5000;
 
 const getFilteredDbNames = (dbNames, cmdArgs) => {
-    let includedDbs = cmdArgs.databases ? dbNames.filter(name => cmdArgs.databases.includes(name)) : dbNames;
+    let includedDbs = cmdArgs.database ? dbNames.filter(name => cmdArgs.database.includes(name)) : dbNames;
     let filteredDbs = cmdArgs.excludeDatabase ? includedDbs.filter(name => !cmdArgs.excludeDatabase.includes(name)) : includedDbs;
     return filteredDbs;
 }
 
 const getFilteredCollectionNames = (collectionNames, cmdArgs) => {
-    let includedCollections = cmdArgs.collections ? collectionNames.filter(name => cmdArgs.collections.includes(name)) : collectionNames;
+    let includedCollections = cmdArgs.collection ? collectionNames.filter(name => cmdArgs.collection.includes(name)) : collectionNames;
     let filteredCollections = cmdArgs.excludeCollection ? includedCollections.filter(name => !cmdArgs.excludeCollection.includes(name)) : includedCollections;
     return filteredCollections;
 }
@@ -51,7 +51,7 @@ const iterateDocuments = async (dbName, collectionName, configuration, client) =
                 .map(document => replaceDocument(dbName, collectionName, document._id, document, client))
             );
             processedCount += documents.length;
-            let modified = result.filter(item => item.modifiedCount > 0).length;
+            let modified = result.filter(item => item.value?.modifiedCount > 0).length;
             CONSOLE_LOG.info(`${dbName}.${collectionName} - ${processedCount} documents of ${count} processed. Chunksize: ${chunkSize}, Executed: ${documents.length}, Modified: ${modified}`);
             documents = [];
         }
