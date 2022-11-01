@@ -1,13 +1,20 @@
 const { readConfiguration } = require("./modules/configuration/configuration-reader-module");
 const { CONSOLE_LOG } = require("./modules/logger/logger");
 const { connect, disconnect } = require("./modules/mongodb/mongo-connection-helper");
-const { translateDbs } = require("./modules/translator/db/db-translator-module");
+const { translateDbs, translateDbsForSpecificKeys } = require("./modules/translator/db/db-translator-module");
 const { translateJsonFiles } = require("./modules/translator/json/json-translator-module");
 
 const translateDatabase = async cmdArgs => {
     let configuration = readConfiguration(cmdArgs);
     let client = await connect(configuration.mongodb);
     await translateDbs(configuration, cmdArgs, client);
+    await disconnect(client, configuration.mongodb);
+}
+
+const translateDatabaseForKeys = async cmdArgs => {
+    let configuration = readConfiguration(cmdArgs);
+    let client = await connect(configuration.mongodb);
+    await translateDbsForSpecificKeys(configuration, cmdArgs, client);
     await disconnect(client, configuration.mongodb);
 }
 
@@ -22,6 +29,7 @@ const help = async (usage) => {
 
 module.exports = {
     translateDatabase,
+    translateDatabaseForKeys,
     translateJson,
     help
 }

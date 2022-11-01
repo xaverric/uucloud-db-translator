@@ -12,15 +12,16 @@ uucloud-db-translator <command> <command parameters>
 
 ## Commands
 ```
-help                Display this help.
-translateDatabase   Performs DB translation.
-translateJson       Performs DB export translation.
+help                        Display this help.
+translateDatabase           Performs DB translation (Does hard replace for whole document).
+translateDatabaseForKeys    Performs DB translation for specific keys in the documents only.
+translateJson               Performs DB export translation.
 ```
 
 ## Parameters
 
 ### --command string           
-```translateJson```, ```translateDatabase```, ```help``` commands. All these can be used as default commands without providing --command argument.
+```translateJson```, ```translateDatabase```, ```translateDatabaseForKeys```, ```help``` commands. All these can be used as default commands without providing --command argument.
 
 ### -c, --config string        
 File path to the configuration object.
@@ -59,6 +60,9 @@ Applicable for ```translateJson``` command. File path to the JSON DB export whic
             "old-value",
             "new-value"
         ]
+    ],
+    "keys": [
+      "keyName" // must be specified in case of translateDatabaseForKeys command
     ]
 }
 ```

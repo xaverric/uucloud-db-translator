@@ -14,7 +14,8 @@ const usageDefinition = [
     header: 'Commands',
     content: [
       { name: 'help', summary: 'Display this help.' },
-      { name: 'translateDatabase', summary: 'Performs DB translation.' },
+      { name: 'translateDatabase', summary: 'Performs DB translation (Does hard replace for whole document).' },
+      { name: 'translateDatabaseForKeys', summary: 'Performs DB translation for specific keys in the documents only.' },
       { name: 'translateJson', summary: 'Performs DB export translation.' }
     ]
   },

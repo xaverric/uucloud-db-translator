@@ -1,10 +1,11 @@
 const { cmdArguments } = require('../cli/arguments');
 const { usage } = require('../cli/usage');
-const { help, translateDatabase, translateJson} = require('../../uucloud-db-translator');
+const { help, translateDatabase, translateDatabaseForKeys, translateJson} = require('../../uucloud-db-translator');
 
 const COMMANDS = {
   COMMAND_HELP: 'help',
   COMMAND_TRANSLATE_DB: 'translateDatabase',
+  COMMAND_TRANSLATE_DB_FOR_KEYS: 'translateDatabaseForKeys',
   COMMAND_TRANSLATE_JSON: 'translateJson'
 };
 
@@ -16,6 +17,10 @@ const actions = {
   translateDb: {
     condition: () => handleCondition(cmdArguments.command === COMMANDS.COMMAND_TRANSLATE_DB),
     action: async () => await translateDatabase(cmdArguments)
+  },
+  translateDatabaseForKeys: {
+    condition: () => handleCondition(cmdArguments.command === COMMANDS.COMMAND_TRANSLATE_DB_FOR_KEYS),
+    action: async () => await translateDatabaseForKeys(cmdArguments)
   },
   translateJson: {
     condition: () => handleCondition(cmdArguments.command === COMMANDS.COMMAND_TRANSLATE_JSON),
