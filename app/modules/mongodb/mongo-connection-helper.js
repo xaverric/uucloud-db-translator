@@ -7,7 +7,7 @@ const { CONSOLE_LOG } = require("../logger/logger");
  * @returns 
  */
 const connect = async mongodbConfig => {
-    const url = `mongodb://${mongodbConfig.username}:${mongodbConfig.password}@${mongodbConfig.host}:${mongodbConfig.port}`;
+    const url = mongodbConfig.connectionString || `mongodb://${mongodbConfig.username}:${mongodbConfig.password}@${mongodbConfig.host}:${mongodbConfig.port}`;
     const client = new MongoClient(url);
     await client.connect();
     CONSOLE_LOG.info(`Connected to the MongoDB (${mongodbConfig.host}:${mongodbConfig.port})`);

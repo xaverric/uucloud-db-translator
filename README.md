@@ -47,6 +47,7 @@ Applicable for ```translateJson``` command. File path to the JSON DB export whic
 ```json
 {
     "mongodb": {
+        "connectionString": "", // whole connection string, if defined, it has priority over the individual values (host, port, etc...)
         "host": "...",
         "port": "...",
         "username": "...",
